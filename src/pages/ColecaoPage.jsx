@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import Ferrofluid from '../components/Ferrofluid/Ferrofluid';
 import TiltedCard from '../components/TiltedCard/TiltedCard';
 import { PRODUCTS, SECTIONS } from '../data/products';
@@ -6,6 +7,14 @@ import './ColecaoPage.css';
 
 export default function ColecaoPage() {
   const navigate = useNavigate();
+  const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 520);
+
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 520px)');
+    const handler = e => setIsMobile(e.matches);
+    mq.addEventListener('change', handler);
+    return () => mq.removeEventListener('change', handler);
+  }, []);
 
   return (
     <div className="colecao-root">
@@ -56,15 +65,15 @@ export default function ColecaoPage() {
                     imageSrc={product.image}
                     altText={product.name}
                     captionText={product.caption}
-                    containerHeight="300px"
-                    containerWidth="220px"
-                    imageHeight="300px"
-                    imageWidth="220px"
+                    containerHeight={isMobile ? '180px' : '300px'}
+                    containerWidth={isMobile ? '100%' : '220px'}
+                    imageHeight={isMobile ? '180px' : '300px'}
+                    imageWidth={isMobile ? '100%' : '220px'}
                     objectFit="cover"
                     scaleOnHover={1.08}
                     rotateAmplitude={12}
                     showMobileWarning={false}
-                    showTooltip={true}
+                    showTooltip={false}
                   />
                   <div className="colecao-card-info">
                     <span className="colecao-card-name">{product.name}</span>

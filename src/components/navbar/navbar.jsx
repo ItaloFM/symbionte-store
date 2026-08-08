@@ -156,7 +156,7 @@ const CardNav = ({
                     </div>
 
                     <div className="logo-container">
-                        <img src={logo} alt={logoAlt} className="logo" width={"200px"} height={"200px"} />
+                        <img src={logo} alt={logoAlt} className="logo" />
                     </div>
 
                     <div className="card-nav-buttons">

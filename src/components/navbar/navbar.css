@@ -73,6 +73,12 @@
     align-items: center;
 }
 
+.logo {
+    height: 44px;
+    width: auto;
+    display: block;
+}
+
 .card-nav-buttons {
     display: flex;
     align-items: center;

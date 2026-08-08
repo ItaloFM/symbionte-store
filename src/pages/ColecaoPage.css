@@ -141,7 +141,51 @@
 }
 
 @media (max-width: 520px) {
+  .colecao-content {
+    padding: 3rem 1rem 4rem;
+  }
+
+  .colecao-title {
+    font-size: 1.8rem;
+    margin: 0 0 2.5rem;
+  }
+
+  .colecao-section {
+    margin-bottom: 3rem;
+  }
+
+  .colecao-section-title {
+    font-size: 1rem;
+    letter-spacing: 0.1em;
+  }
+
+  /* Cards adaptam à largura da tela */
   .colecao-grid {
-    grid-template-columns: repeat(1, 220px);
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    width: 100%;
+  }
+
+  .colecao-card-wrap {
+    width: 100%;
+    gap: 0.6rem;
+  }
+
+  .colecao-card-wrap--shoe {
+    width: 100%;
+  }
+
+  .colecao-card-name {
+    font-size: 0.8rem;
+  }
+
+  .colecao-card-price {
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .colecao-grid {
+    grid-template-columns: 1fr;
   }
 }

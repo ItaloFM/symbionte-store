@@ -1,6 +1,7 @@
 import Iridescence from '../Iridescence/Iridescence';
 import AccordionGallery from '../AccordionGallery/AccordionGallery';
 import { useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 
 import img1 from '../../assets/ChatGPT Image 7_08_2026, 14_51_39.png';
 import img2 from '../../assets/shoe1.png';
@@ -20,6 +21,14 @@ const GALLERY_ITEMS = [
 
 export default function HeroSection() {
   const navigate = useNavigate();
+  const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
+
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 768px)');
+    const handler = e => setIsMobile(e.matches);
+    mq.addEventListener('change', handler);
+    return () => mq.removeEventListener('change', handler);
+  }, []);
 
   return (
     <section className="hero">
@@ -52,7 +61,7 @@ export default function HeroSection() {
           <AccordionGallery
             items={GALLERY_ITEMS}
             defaultIndex={2}
-            height={500}
+            height={isMobile ? 260 : 500}
             accentColor="#c0c8d0"
             overlayColor="#000000"
             textColor="#ffffff"
