@@ -1,6 +1,6 @@
 // ── Imagens ────────────────────────────────────────────────────────────────
 import avCoat    from '../assets/Anti_venom/Anti-Venom_coat.png';
-import avShoe    from '../assets/Anti_venom/Anti-Venom_Shoe.png';
+import avShoe    from '../assets/Anti_venom/Anti-venom_Shoe.png';
 import avJacket  from '../assets/Anti_venom/Anti_venom_jacket.png';
 import avShoe2   from '../assets/Anti_venom/anti_venom_show.png';
 
