@@ -32,35 +32,13 @@ const CardNav = ({
 
     const calculateHeight = () => {
         const navEl = navRef.current;
-        if (!navEl) return 260;
+        if (!navEl) return 200;
 
         const isMobile = window.matchMedia('(max-width: 768px)').matches;
         if (isMobile) {
-            const contentEl = navEl.querySelector('.card-nav-content');
-            if (contentEl) {
-                const wasVisible = contentEl.style.visibility;
-                const wasPointerEvents = contentEl.style.pointerEvents;
-                const wasPosition = contentEl.style.position;
-                const wasHeight = contentEl.style.height;
-
-                contentEl.style.visibility = 'visible';
-                contentEl.style.pointerEvents = 'auto';
-                contentEl.style.position = 'static';
-                contentEl.style.height = 'auto';
-
-                contentEl.offsetHeight;
-
-                const topBar = 60;
-                const padding = 16;
-                const contentHeight = contentEl.scrollHeight;
-
-                contentEl.style.visibility = wasVisible;
-                contentEl.style.pointerEvents = wasPointerEvents;
-                contentEl.style.position = wasPosition;
-                contentEl.style.height = wasHeight;
-
-                return topBar + contentHeight + padding;
-            }
+            // 60px topbar + 2 linhas de botões (48px cada) + gaps + padding
+            // 2 botões por linha × 2 linhas + 1 linha carrinho = 3 linhas × 48px + gaps
+            return 60 + (48 * 3) + (8 * 2) + (12 * 2); // ≈ 232px
         }
         return 260;
     };
@@ -179,24 +157,34 @@ const CardNav = ({
                 </div>
 
                 <div className="card-nav-content" aria-hidden={!isExpanded}>
-                    {(items || []).slice(0, 3).map((item, idx) => (
-                        <div
-                            key={`${item.label}-${idx}`}
-                            className="nav-card"
-                            ref={setCardRef(idx)}
-                            style={{ backgroundColor: item.bgColor, color: item.textColor }}
+                    {/* Mobile: botões de coleção + carrinho */}
+                    <div className="mobile-nav-menu">
+                        {NAV_BUTTONS.map(({ label, hash, cls }) => (
+                            <Link
+                                key={hash}
+                                to={`/colecao#${hash}`}
+                                className="card-nav-link"
+                                onClick={() => { setIsHamburgerOpen(false); setIsExpanded(false); }}
+                            >
+                                <button type="button" className={`card-nav-cta-button mobile-menu-btn ${cls}`}>
+                                    {label}
+                                </button>
+                            </Link>
+                        ))}
+
+                        <button
+                            type="button"
+                            className="card-nav-cta-button mobile-menu-btn btn-silver mobile-cart-btn"
+                            onClick={() => { toggleCart(); setIsHamburgerOpen(false); setIsExpanded(false); }}
+                            aria-label="Abrir carrinho"
                         >
-                            <div className="nav-card-label">{item.label}</div>
-                            <div className="nav-card-links">
-                                {item.links?.map((lnk, i) => (
-                                    <a key={`${lnk.label}-${i}`} className="nav-card-link" href={lnk.href} aria-label={lnk.ariaLabel}>
-                                        <GoArrowUpRight className="nav-card-link-icon" aria-hidden="true" />
-                                        {lnk.label}
-                                    </a>
-                                ))}
-                            </div>
-                        </div>
-                    ))}
+                            <BsCart3 style={{ marginRight: '0.4rem', verticalAlign: 'middle' }} />
+                            Carrinho
+                            {totalItems > 0 && (
+                                <span className="mobile-cart-count">{totalItems}</span>
+                            )}
+                        </button>
+                    </div>
                 </div>
             </nav>
         </div>

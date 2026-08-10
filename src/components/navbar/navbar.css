@@ -283,27 +283,53 @@
         display: none;
     }
 
+    /* Conteúdo mobile: grade de botões */
     .card-nav-content {
         flex-direction: column;
         align-items: stretch;
-        gap: 8px;
-        padding: 0.5rem;
+        padding: 0.75rem;
+        top: 60px;
         bottom: 0;
-        justify-content: flex-start;
+        gap: 0;
     }
 
-    .nav-card {
-        height: auto;
-        min-height: 60px;
-        flex: 1 1 auto;
-        max-height: none;
+    .mobile-nav-menu {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.5rem;
+        width: 100%;
+        padding: 0.25rem 0;
     }
 
-    .nav-card-label {
-        font-size: 18px;
+    .mobile-menu-btn {
+        width: 100%;
+        height: 48px !important;
+        font-size: 0.8rem !important;
+        border-radius: 0.5rem !important;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
-    .nav-card-link {
-        font-size: 15px;
+    /* Botão do carrinho ocupa a linha toda */
+    .mobile-cart-btn {
+        grid-column: 1 / -1;
     }
+
+    .mobile-cart-count {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(255,255,255,0.25);
+        border-radius: 999px;
+        font-size: 0.7rem;
+        font-weight: 800;
+        min-width: 18px;
+        height: 18px;
+        padding: 0 4px;
+        margin-left: 0.4rem;
+        line-height: 1;
+    }
+
+    .nav-card { display: none; }
 }
