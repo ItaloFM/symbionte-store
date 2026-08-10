@@ -1,0 +1,135 @@
+/* ── Raiz ─────────────────────────────────────────────────────────────────── */
+.pc-root {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+}
+
+/* ── Stage (imagem grande) ───────────────────────────────────────────────── */
+.pc-stage {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  border-radius: 16px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.pc-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.32s ease;
+  pointer-events: none;
+  user-select: none;
+}
+
+.pc-img--active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ── Setas ───────────────────────────────────────────────────────────────── */
+.pc-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #fff;
+  font-size: 1.8rem;
+  line-height: 1;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 2;
+  transition: background 0.2s, transform 0.2s;
+  backdrop-filter: blur(6px);
+}
+
+.pc-arrow:hover {
+  background: rgba(0, 0, 0, 0.7);
+  transform: translateY(-50%) scale(1.08);
+}
+
+.pc-arrow--prev { left: 10px; }
+.pc-arrow--next { right: 10px; }
+
+/* VIP: setas douradas */
+.pc-root--vip .pc-arrow {
+  border-color: rgba(200, 160, 40, 0.4);
+  color: #f5c842;
+}
+
+/* ── Miniaturas ──────────────────────────────────────────────────────────── */
+.pc-thumbs {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.pc-thumb {
+  width: 64px;
+  height: 64px;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 2px solid transparent;
+  cursor: pointer;
+  padding: 0;
+  background: rgba(255, 255, 255, 0.06);
+  transition: border-color 0.2s, transform 0.2s, opacity 0.2s;
+  opacity: 0.55;
+  flex-shrink: 0;
+}
+
+.pc-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  pointer-events: none;
+  user-select: none;
+}
+
+.pc-thumb:hover {
+  opacity: 0.85;
+  transform: scale(1.05);
+}
+
+.pc-thumb--active {
+  border-color: rgba(255, 255, 255, 0.8);
+  opacity: 1;
+}
+
+/* VIP: borda dourada na miniatura ativa */
+.pc-thumb--vip.pc-thumb--active {
+  border-color: #f5c842;
+}
+
+/* ── Responsivo ──────────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .pc-stage {
+    aspect-ratio: 1 / 1;
+    border-radius: 12px;
+  }
+
+  .pc-arrow {
+    width: 34px;
+    height: 34px;
+    font-size: 1.4rem;
+  }
+
+  .pc-thumb {
+    width: 52px;
+    height: 52px;
+  }
+}

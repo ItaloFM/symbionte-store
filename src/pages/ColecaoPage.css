@@ -1,0 +1,199 @@
+.colecao-root {
+  position: relative;
+  min-height: 100vh;
+  background: #000;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* Ferrofluid fixo no fundo */
+.colecao-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+}
+
+/* Dim sobre o fundo para legibilidade */
+.colecao-dim {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  z-index: 1;
+}
+
+/* Conteúdo scrollável acima do fundo */
+.colecao-content {
+  position: relative;
+  z-index: 2;
+  padding: 6rem 5vw 6rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* Logo no topo da página de coleções */
+.colecao-logo {
+  display: block;
+  height: 200px;
+  width: 600px;
+  margin: 0 auto 3rem;
+}
+
+.colecao-title {
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -0.03em;
+  margin: 0 0 4rem;
+  text-align: center;
+}
+
+/* Seções por simbionte */
+.colecao-section {
+  margin-bottom: 5rem;
+}
+
+.colecao-section-title {
+  font-size: clamp(1.2rem, 2.5vw, 1.75rem);
+  font-weight: 700;
+  color: #d4d4d4;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin: 0 0 2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.colecao-section-title.vip {
+  background: linear-gradient(90deg, #f5c842, #a07800, #f5c842);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gold-shimmer 3s linear infinite;
+}
+
+@keyframes gold-shimmer {
+  0%   { background-position: 0% center; }
+  100% { background-position: 200% center; }
+}
+
+.vip-badge {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  padding: 3px 8px;
+  border-radius: 4px;
+  background: linear-gradient(135deg, #a07800, #f5c842);
+  color: #1a0e00;
+  -webkit-text-fill-color: #1a0e00;
+  text-transform: uppercase;
+  align-self: center;
+}
+
+/* Grid: 4 colunas fixas, espaçamento uniforme */
+.colecao-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 220px);
+  gap: 2rem;
+  justify-content: center;
+  align-items: start;
+}
+
+/* Todos os cards têm o mesmo tamanho */
+.colecao-card-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  width: 220px;
+}
+
+.colecao-card-wrap--shoe {
+  width: 220px;
+}
+
+.colecao-card-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+  text-align: center;
+}
+
+.colecao-card-name {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #e5e5e5;
+  letter-spacing: 0.02em;
+}
+
+.colecao-card-price {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #a0a0a0;
+  letter-spacing: 0.04em;
+}
+
+.colecao-card-price.price-gold {
+  background: linear-gradient(90deg, #f5c842, #c8900a);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+@media (max-width: 1000px) {
+  .colecao-grid {
+    grid-template-columns: repeat(2, 220px);
+  }
+}
+
+@media (max-width: 520px) {
+  .colecao-content {
+    padding: 3rem 1rem 4rem;
+  }
+
+  .colecao-title {
+    font-size: 1.8rem;
+    margin: 0 0 2.5rem;
+  }
+
+  .colecao-section {
+    margin-bottom: 3rem;
+  }
+
+  .colecao-section-title {
+    font-size: 1rem;
+    letter-spacing: 0.1em;
+  }
+
+  /* Cards adaptam à largura da tela */
+  .colecao-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    width: 100%;
+  }
+
+  .colecao-card-wrap {
+    width: 100%;
+    gap: 0.6rem;
+  }
+
+  .colecao-card-wrap--shoe {
+    width: 100%;
+  }
+
+  .colecao-card-name {
+    font-size: 0.8rem;
+  }
+
+  .colecao-card-price {
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .colecao-grid {
+    grid-template-columns: 1fr;
+  }
+}
