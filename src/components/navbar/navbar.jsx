@@ -2,6 +2,8 @@ import { useLayoutEffect, useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { gsap } from 'gsap';
 import { GoArrowUpRight } from 'react-icons/go';
+import { BsCart3 } from 'react-icons/bs';
+import { useCart } from '../../context/CartContext';
 import './navbar.css';
 
 const NAV_BUTTONS = [
@@ -26,6 +28,7 @@ const CardNav = ({
     const cardsRef = useRef([]);
     const tlRef = useRef(null);
     const navigate = useNavigate();
+    const { totalItems, toggleCart } = useCart();
 
     const calculateHeight = () => {
         const navEl = navRef.current;
@@ -159,6 +162,19 @@ const CardNav = ({
                                 </button>
                             </Link>
                         ))}
+
+                        {/* Ícone do carrinho */}
+                        <button
+                            type="button"
+                            className="cart-icon-btn"
+                            onClick={toggleCart}
+                            aria-label={`Abrir carrinho${totalItems > 0 ? ` — ${totalItems} itens` : ''}`}
+                        >
+                            <BsCart3 className="cart-icon" />
+                            {totalItems > 0 && (
+                                <span className="cart-badge">{totalItems > 99 ? '99+' : totalItems}</span>
+                            )}
+                        </button>
                     </div>
                 </div>
 

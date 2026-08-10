@@ -6,6 +6,8 @@ import Logo from './assets/Logo.png'
 import ColecaoPage from './pages/ColecaoPage'
 import ProductPage from './pages/ProductPage'
 import NotFoundPage from './pages/NotFoundPage'
+import { CartProvider } from './context/CartContext'
+import CartDrawer from './components/CartDrawer/CartDrawer'
 
 const NAV_ITEMS = [
   {
@@ -42,27 +44,32 @@ const NAV_ITEMS = [
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={
-          <>
-            <CardNav
-              logo={Logo}
-              logoAlt="Symbionte"
-              items={NAV_ITEMS}
-              baseColor="rgba(255, 255, 255, 0.08)"
-              menuColor="#ffffff"
-              buttonBgColor="#ffffff"
-              buttonTextColor="#0a0a0a"
-            />
-            <HeroSection />
-          </>
-        } />
-        <Route path="/colecao" element={<ColecaoPage />} />
-        <Route path="/colecao/:id" element={<ProductPage />} />
-        <Route path="*" element={<NotFoundPage />} />
-      </Routes>
-    </BrowserRouter>
+    <CartProvider>
+      <BrowserRouter>
+        {/* Drawer disponível em todas as rotas */}
+        <CartDrawer />
+
+        <Routes>
+          <Route path="/" element={
+            <>
+              <CardNav
+                logo={Logo}
+                logoAlt="Symbionte"
+                items={NAV_ITEMS}
+                baseColor="rgba(255, 255, 255, 0.08)"
+                menuColor="#ffffff"
+                buttonBgColor="#ffffff"
+                buttonTextColor="#0a0a0a"
+              />
+              <HeroSection />
+            </>
+          } />
+          <Route path="/colecao" element={<ColecaoPage />} />
+          <Route path="/colecao/:id" element={<ProductPage />} />
+          <Route path="*" element={<NotFoundPage />} />
+        </Routes>
+      </BrowserRouter>
+    </CartProvider>
   )
 }
 

@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { PRODUCTS } from '../data/products';
 import Ferrofluid from '../components/Ferrofluid/Ferrofluid';
 import ProductCarousel from '../components/ProductCarousel/ProductCarousel';
+import { useCart } from '../context/CartContext';
 import './ProductPage.css';
 
 export default function ProductPage() {
@@ -12,6 +13,7 @@ export default function ProductPage() {
 
   const [selectedSize, setSelectedSize] = useState(null);
   const [added, setAdded] = useState(false);
+  const { addItem } = useCart();
 
   if (!product) {
     return (
@@ -32,6 +34,7 @@ export default function ProductPage() {
 
   const handleAdd = () => {
     if (!selectedSize) return;
+    addItem(product, selectedSize);
     setAdded(true);
     setTimeout(() => setAdded(false), 2000);
   };
